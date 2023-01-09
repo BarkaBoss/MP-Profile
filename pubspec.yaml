@@ -40,6 +40,7 @@ dependencies:
   path_provider: ^2.0.11
   sqlite3_flutter_libs: ^0.5.12
   analyzer: ^5.2.0
+  get: ^4.6.5
 
 dev_dependencies:
   drift_dev: ^2.4.1

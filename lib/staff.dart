@@ -19,9 +19,14 @@ abstract class StaffView extends View{
   @override
   Query as() => select(
     [
-      staff.name
+      staff.name,
+      staff.gender,
+      staff.position,
+      staff.staffID,
+      staff.dateOfBirth,
+      staff.imageBaseSixFour,
     ]
-  ).from(staff);
+  ).from(staff)..where((tbl) => staff.staffID.equals("compare"));
 
 }
 
