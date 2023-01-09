@@ -111,8 +111,8 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.hasData) {
                   print('Found you ${snapshot.data?.first.staffID}');
 
-
-                    Navigator.push(context,
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) =>
                             DataPage(
                               staffID: snapshot.data?.first.staffID,
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                                   .imageBaseSixFour,
                               gender: snapshot.data?.first.position,
                             )));
-
+                  });
                   return const Text(
                     "Data found",
                     style: TextStyle(color: Colors.grey),);
