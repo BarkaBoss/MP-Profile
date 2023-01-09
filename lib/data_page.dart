@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:profile/main.dart';
 
 class DataPage extends StatefulWidget {
 
@@ -31,7 +32,10 @@ class _DataPageState extends State<DataPage>{
         title: Text(widget.name.toString()),
         actions: [
           IconButton(onPressed: (){
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                const MyApp()
+            )
+            );
           },
               icon: const Icon(
                 Icons.close,
