@@ -33,9 +33,8 @@ class _DataPageState extends State<DataPage>{
         actions: [
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                const MyApp()
-            )
-            );
+              const MyApp()
+            ));
           },
               icon: const Icon(
                 Icons.close,
