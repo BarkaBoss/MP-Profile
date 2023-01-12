@@ -37,7 +37,7 @@ await db.into(db.staff).insert(StaffCompanion.insert(
       name: "Christopher Wakawa,",
       gender: "Male",
       position: "Xerox Operator",
-      staffID: "MP0216ABJ2",
+      staffID: "MP0820ABJ5",
       dateOfBirth: "23/05/1987",
       imageBaseSixFour: ImageStrings.xeroxOperator));
 
@@ -67,15 +67,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Profile Scanner",
-      //home: HomePage(),
-      home: DataPage(staffID: "ID007",
-          name: "James Bond",
-          position: "Dev",
-          dateOfBirth: "5/4/1987",
-          gender: "Male",
-          imageSixFour: ImageStrings.anotherStaffImage),
+      home: HomePage(),
+      // home: DataPage(staffID: "ID007",
+      //     name: "James Bond",
+      //     position: "Dev",
+      //     dateOfBirth: "5/4/1987",
+      //     gender: "Male",
+      //     imageSixFour: ImageStrings.anotherStaffImage),
     );
   }
 }
