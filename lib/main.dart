@@ -25,6 +25,22 @@ Future<void> main() async {
       dateOfBirth: "20/10/1972",
       imageBaseSixFour: ImageStrings.ceo));
 
+await db.into(db.staff).insert(StaffCompanion.insert(
+      name: "Jonah Mamman",
+      gender: "Male",
+      position: "Accountant",
+      staffID: "MP0216ABJ2",
+      dateOfBirth: "27/11/1987",
+      imageBaseSixFour: ImageStrings.accountant));
+
+await db.into(db.staff).insert(StaffCompanion.insert(
+      name: "Christopher Wakawa,",
+      gender: "Male",
+      position: "Xerox Operator",
+      staffID: "MP0216ABJ2",
+      dateOfBirth: "23/05/1987",
+      imageBaseSixFour: ImageStrings.xeroxOperator));
+
   await db.into(db.staff).insert(StaffCompanion.insert(
       name: "Rose Amada",
       gender: "Female",
@@ -51,9 +67,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Profile Scanner",
-      home: HomePage(),
+      //home: HomePage(),
+      home: DataPage(staffID: "ID007",
+          name: "James Bond",
+          position: "Dev",
+          dateOfBirth: "5/4/1987",
+          gender: "Male",
+          imageSixFour: ImageStrings.anotherStaffImage),
     );
   }
 }
@@ -120,7 +142,7 @@ class _HomePageState extends State<HomePage> {
           start == false ? const Text("") : QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
           dex == "x" ? const Text("") :
           FutureBuilder<List<StaffData>> (
-              future: getStaff(dex.substring(0, 10)),
+              future: getStaff(dex.substring(100, 110)),
               //initialData: [],
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
