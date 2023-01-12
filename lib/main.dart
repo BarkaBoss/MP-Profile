@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          RaisedButton(onPressed: (){
+          MaterialButton(onPressed: (){
             setState(() {
               start = true;
               CameraFacing.front;
