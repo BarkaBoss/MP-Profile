@@ -1,13 +1,10 @@
-//import 'package:drift/native.dart';
-//import 'package:drift/web.dart';
-//import 'unsupported.dart';
-//import 'web_db.dart';
 import 'shared.dart';
 import 'package:flutter/foundation.dart';
 import 'package:profile/ImageStrings.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:profile/scanner_overlay.dart';
+import 'package:camera_web/camera_web.dart';
 import 'data_page.dart';
 import 'staff.dart';
 
@@ -18,20 +15,23 @@ var db = constructDb();
 Future<void> main() async {
 
   (await db.select(db.staff).get()).forEach(print);
+  (await db.delete(db.staff)).go();
 
-  await db.into(db.staff).insert(StaffCompanion.insert(name: "Sarki Amada",
+  await db.into(db.staff).insert(StaffCompanion.insert(
+      name: "Sarki Amada",
       gender: "Male",
       position: "CEO",
       staffID: "126VG87ABJ",
       dateOfBirth: "20/10/1972",
-      imageBaseSixFour: ImageStrings.anotherStaffImage));
+      imageBaseSixFour: ImageStrings.ceo));
 
-  await db.into(db.staff).insert(StaffCompanion.insert(name: "Rose Amada",
+  await db.into(db.staff).insert(StaffCompanion.insert(
+      name: "Rose Amada",
       gender: "Female",
       position: "SEO",
       staffID: "136VG88ABJ",
       dateOfBirth: "20/10/2006",
-      imageBaseSixFour: ImageStrings.ceo));
+      imageBaseSixFour: ImageStrings.anotherStaffImage));
 
   (await db.select(db.staff).get()).forEach(print);
 
@@ -69,9 +69,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final MobileScannerController _scannerController = MobileScannerController();
+
   String dex = "x";
+  bool start = false;
   @override
   Widget build(BuildContext context) {
+    //_scannerController.barcodesController.onPause;
+    //_scannerController.stop();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile Scanner"),
@@ -85,7 +89,18 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          MobileScanner(
+          RaisedButton(onPressed: (){
+            setState(() {
+              start = true;
+              CameraFacing.front;
+              //_scannerController.barcodesController.onResume;
+              //_scannerController.isStarting;
+              //_scannerController.start();
+            });
+          },
+              child: const Text("Start")),
+
+          start == false ? const Text("") : MobileScanner(
               allowDuplicates: true,
               controller: _scannerController,
               onDetect: (barcode, args) {
@@ -102,10 +117,10 @@ class _HomePageState extends State<HomePage> {
                   print("done");
               }
               }),
-          QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
-          dex == "x" ? const Text("No Data") :
+          start == false ? const Text("") : QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
+          dex == "x" ? const Text("") :
           FutureBuilder<List<StaffData>> (
-              future: getStaff(dex),
+              future: getStaff(dex.substring(0, 10)),
               //initialData: [],
               builder: (context, snapshot) {
                 if (snapshot.hasData) {

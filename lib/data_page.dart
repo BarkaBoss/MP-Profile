@@ -47,7 +47,7 @@ class _DataPageState extends State<DataPage>{
         mainAxisAlignment: MainAxisAlignment.spaceAround,
 
         children: [
-          Image.memory(Base64Decoder().convert(widget.imageSixFour.toString())),
+          Image.memory(Base64Decoder().convert(widget.imageSixFour.toString()), width: 300,),
           Text(widget.name.toString()),
           Text(widget.staffID.toString()),
           Text(widget.position.toString()),
