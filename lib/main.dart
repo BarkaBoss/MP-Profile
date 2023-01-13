@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   final String code = barcode.rawValue!;
                   setState(() {
                     dex = code;
-                    Future.delayed(const Duration(milliseconds: 100));
+                    //Future.delayed(const Duration(milliseconds: 100));
                   });
 
                   debugPrint('QR found! $code');
