@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
           },
               child: const Text("Start")),
 
-          start == false ? const Text("") : MobileScanner(
+          MobileScanner(
               allowDuplicates: true,
               controller: _scannerController,
               onDetect: (barcode, args) {
