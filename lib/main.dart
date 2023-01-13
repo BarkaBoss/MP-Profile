@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                   print("done");
               }
               }),
-          start == false ? const Text("") : QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
+          QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
           dex == "x" ? const Text("") :
           FutureBuilder<List<StaffData>> (
               future: getStaff(dex.substring(100, 110)),
