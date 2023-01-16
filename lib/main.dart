@@ -1,3 +1,5 @@
+import 'package:get/utils.dart';
+
 import 'shared.dart';
 import 'package:flutter/foundation.dart';
 import 'package:profile/ImageStrings.dart';
@@ -111,17 +113,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          MaterialButton(onPressed: (){
-            setState(() {
-              start = true;
-              CameraFacing.front;
-              //_scannerController.barcodesController.onResume;
-              //_scannerController.isStarting;
-              //_scannerController.start();
-            });
-          },
-              child: const Text("Start")),
-
           MobileScanner(
               allowDuplicates: true,
               controller: _scannerController,
@@ -146,7 +137,9 @@ class _HomePageState extends State<HomePage> {
               //initialData: [],
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print('Found you ${snapshot.data?.first.staffID}');
+                  if (kDebugMode) {
+                    print('Found you ${snapshot.data?.first.staffID}');
+                  }
 
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     Navigator.pushReplacement(context,
