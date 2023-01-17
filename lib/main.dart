@@ -1,3 +1,5 @@
+import 'package:get/utils.dart';
+
 import 'shared.dart';
 import 'package:flutter/foundation.dart';
 import 'package:profile/ImageStrings.dart';
@@ -56,9 +58,18 @@ await db.into(db.staff).insert(StaffCompanion.insert(
 }
 
 
-Future<List<StaffData>> getStaff(String staffID) async{
-  return (await (db.select(db.staff)
-    ..where((a) => a.staffID.equals(staffID))).get());
+Future<StaffData> getStaff(String staffID) async{
+  if(staffID.length > 200){
+    String subID = staffID.substring(100, 110);
+    return (await (db.select(db.staff)
+      ..where((a) => a.staffID.equals(subID))).get()).first;
+  }else {
+    debugPrint("No data found");
+    return const StaffData(id: 0, name: "name", gender: "0",
+        position: "position", staffID: "0", dateOfBirth: "0",
+        imageBaseSixFour: "0");
+  }
+
 }
 
 
@@ -141,25 +152,23 @@ class _HomePageState extends State<HomePage> {
               }),
           QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5)),
           dex == "x" ? const Text("") :
-          FutureBuilder<List<StaffData>> (
-              future: getStaff(dex.substring(100, 110)),
+          FutureBuilder<StaffData> (
+              future: getStaff(dex),
               //initialData: [],
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  print('Found you ${snapshot.data?.first.staffID}');
+                if (snapshot.hasData && snapshot.data?.staffID != "0") {
+                  print('Found you ${snapshot.data?.staffID}');
 
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) =>
                             DataPage(
-                              staffID: snapshot.data?.first.staffID,
-                              name: snapshot.data?.first.name,
-                              position: snapshot.data?.first
-                                  .dateOfBirth,
-                              dateOfBirth: snapshot.data?.first.gender,
-                              imageSixFour: snapshot.data?.first
-                                  .imageBaseSixFour,
-                              gender: snapshot.data?.first.position,
+                              staffID: snapshot.data?.staffID,
+                              name: snapshot.data?.name,
+                              position: snapshot.data?.dateOfBirth,
+                              dateOfBirth: snapshot.data?.gender,
+                              imageSixFour: snapshot.data?.imageBaseSixFour,
+                              gender: snapshot.data?.position,
                             )));
                   });
                   return const Text(
