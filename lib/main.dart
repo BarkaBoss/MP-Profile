@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
     //_scannerController.stop();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile Scanner"),
+        title: const Text("Micro Press Scanner"),
         actions: [
           IconButton(
               onPressed: () {
