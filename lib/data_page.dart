@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:profile/main.dart';
+import 'package:micro_press_profile/main.dart';
 
 class DataPage extends StatefulWidget {
   String? name;

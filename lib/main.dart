@@ -2,10 +2,10 @@ import 'package:get/utils.dart';
 
 import 'shared.dart';
 import 'package:flutter/foundation.dart';
-import 'package:profile/ImageStrings.dart';
+import 'package:micro_press_profile/ImageStrings.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:profile/scanner_overlay.dart';
+import 'package:micro_press_profile/scanner_overlay.dart';
 import 'package:camera_web/camera_web.dart';
 import 'data_page.dart';
 import 'staff.dart';
